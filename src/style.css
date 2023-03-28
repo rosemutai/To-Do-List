@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(236, 236, 236);
+  font-family: 'Roboto', sans-serif;
+}
+
+.todos-section {
+  padding-top: 8px;
+  width: 40%;
+  margin: 2rem auto;
+  box-shadow: 4px 4px 12px #808080;
+}
+
+.title {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  padding-left: 12px;
+}
+
+.title h4 {
+  color: rgba(43, 43, 43, 0.6);
+  font-weight: 500;
+}
+
+form input,
+button.clear-btn {
+  padding: 12px;
+  width: 100%;
+  background-color: #fff;
+  border: transparent;
+  color: rgba(43, 43, 43, 0.6);
+}
+
+form input {
+  margin-bottom: 5px;
+}
+
+input::placeholder {
+  font-style: italic;
+}
+
+button.clear-btn {
+  background-color: rgb(236, 236, 236);
+  letter-spacing: 1px;
+}
+
+.todo {
+  display: flex;
+  background-color: #fff;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 5px;
+  color: rgba(43, 43, 43, 0.9);
+}
+
+.todo-description {
+  margin-left: 12px;
+}
