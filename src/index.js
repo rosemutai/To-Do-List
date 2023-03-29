@@ -33,18 +33,20 @@ const todos = [
 ];
 
 const toDosSection = document.getElementById('todos');
-const displayToDos = todos.forEach((todo) => {
-  const div = document.createElement('div');
-  div.className = 'todo';
-  const pTag = document.createElement('p');
-  pTag.className = 'todo-description';
-  pTag.innerHTML = todo.description;
-  const completedBtn = document.createElement('input');
-  completedBtn.type = 'checkbox';
-  completedBtn.value = todo.completed;
-  div.appendChild(completedBtn);
-  div.appendChild(pTag);
-  toDosSection.append(div);
-});
+const displayToDos = () => {
+  todos.forEach((todo) => {
+    const div = document.createElement('div');
+    div.className = 'todo';
+    const pTag = document.createElement('p');
+    pTag.className = 'todo-description';
+    pTag.innerHTML = todo.description;
+    const completedBtn = document.createElement('input');
+    completedBtn.type = 'checkbox';
+    completedBtn.value = todo.completed;
+    div.appendChild(completedBtn);
+    div.appendChild(pTag);
+    toDosSection.append(div);
+  });
+};
 
 displayToDos();
