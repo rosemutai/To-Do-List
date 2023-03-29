@@ -5,15 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-Do-List App</title>
+  <!-- google material icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
   <div class="todos-section">
     <div class="title">
       <h4>Today's To-Dos</h4>
     </div>
-    <form action="" class="add">
+    <form action="" class="add" id="add-form">
       <input type="text" name="description" id="description-input"
-      placeholder="Add to your list...">
+      placeholder="Add to your list..."
+      autocomplete="off">
+      <button type="submit" class="create-btn">
+        <span class="material-symbols-outlined">
+          keyboard_return
+        </span>
+      </button>
     </form>
     <div class="todo-list" id="todos"></div>
     <button class="clear-btn">Clear all completed</button>
