@@ -35,10 +35,10 @@ body {
 
 .material-symbols-outlined {
   font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
 }
 
 .delete-btn {
@@ -59,10 +59,6 @@ form.add button {
   text-align: center;
 }
 
-form input:focus {
-  outline: none;
-}
-
 form input,
 button.clear-btn {
   padding: 12px;
@@ -74,6 +70,10 @@ button.clear-btn {
 
 form input {
   margin-bottom: 5px;
+}
+
+form input:focus {
+  outline: none;
 }
 
 input::placeholder {
