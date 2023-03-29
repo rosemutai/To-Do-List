@@ -33,6 +33,36 @@ body {
   font-weight: 500;
 }
 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.delete-btn {
+  margin-left: auto;
+  text-align: center;
+  padding-top: 12px;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+}
+
+form.add button {
+  border: none;
+  background-color: #fff;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+form input:focus {
+  outline: none;
+}
+
 form input,
 button.clear-btn {
   padding: 12px;
