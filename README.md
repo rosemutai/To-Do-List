@@ -151,7 +151,7 @@ git@github.com:rosemutai/To-Do-List.git
 ## :busts_in_silhouette: Authors <a name="authors"></a>
 :bust_in_silhouette: **ROSE MUTAI**
 - GitHub: [rosemutai](https://github.com/rosemutai)
-- Twitter: [__rosemutai](https://twitter.com/__rosemutai)
+- Twitter: [__rosemutai](https://twitter.com/__chepngetich)
 - LinkedIn: [Rose Mutai](https://www.linkedin.com/in/rosemutai/)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
