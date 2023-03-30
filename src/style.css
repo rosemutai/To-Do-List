@@ -48,6 +48,8 @@ body {
 }
 
 form {
+  width: 90%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
 }
@@ -80,20 +82,34 @@ input::placeholder {
   font-style: italic;
 }
 
+.completed {
+  color: rgba(43, 43, 43, 0.4);
+  text-decoration: line-through;
+}
+
 button.clear-btn {
   background-color: rgb(236, 236, 236);
   letter-spacing: 1px;
 }
 
-.todo {
+li {
+  list-style-type: none;
   display: flex;
   background-color: #fff;
-  width: 100%;
+  width: 90%;
   padding: 12px;
   margin-bottom: 5px;
   color: rgba(43, 43, 43, 0.9);
 }
 
+li:hover {
+  background-color: rgba(248, 208, 99, 0.3);
+}
+
 .todo-description {
-  margin-left: 12px;
+  outline: 0;
+  background-color: inherit;
+  margin: 0 auto;
+  width: 100%;
+  border: none;
 }
