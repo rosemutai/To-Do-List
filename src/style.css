@@ -23,14 +23,21 @@ body {
 }
 
 .title {
-  margin-top: 24px;
-  margin-bottom: 12px;
-  padding-left: 12px;
+  margin: 24px auto 12px auto;
+  padding: 0 12px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.title h4 {
+.title h4,
+.title span {
   color: rgba(43, 43, 43, 0.6);
   font-weight: 500;
+}
+
+.title span {
+  margin-left: auto;
+  text-align: center;
 }
 
 .material-symbols-outlined {
@@ -39,6 +46,7 @@ body {
     'wght' 400,
     'GRAD' 0,
     'opsz' 48;
+  color: rgba(43, 43, 43, 0.6);
 }
 
 .delete-btn {
@@ -48,7 +56,7 @@ body {
 }
 
 form {
-  width: 90%;
+  width: 88%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -68,6 +76,10 @@ button.clear-btn {
   background-color: #fff;
   border: transparent;
   color: rgba(43, 43, 43, 0.6);
+}
+
+ul {
+  margin-left: 0;
 }
 
 form input {
@@ -96,8 +108,10 @@ li {
   list-style-type: none;
   display: flex;
   background-color: #fff;
-  width: 90%;
+  width: 95%;
   padding: 12px;
+  margin-left: 0;
+  margin-right: 12px;
   margin-bottom: 5px;
   color: rgba(43, 43, 43, 0.9);
 }
@@ -106,10 +120,15 @@ li:hover {
   background-color: rgba(248, 208, 99, 0.3);
 }
 
-.todo-description {
+.task-description {
   outline: 0;
   background-color: inherit;
   margin: 0 auto;
   width: 100%;
-  border: none;
+  border: transparent;
+  height: inherit;
+}
+
+.task-description:hover {
+  background-color: rgba(248, 208, 99, 0.3);
 }
