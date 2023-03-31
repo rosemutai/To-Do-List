@@ -37,7 +37,7 @@ const displayAllTodos = () => {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = task.completed;
-    checkbox.addEventListener('click', () => toggleCompletedToDo(index));
+    checkbox.addEventListener('click', () => toggleCompletedToDo(index));/* eslint-disable-line */ 
 
     const taskDescription = document.createElement('input');
     taskDescription.type = 'text';
@@ -101,23 +101,21 @@ const toggleCompletedToDo = (index) => {
   tasks[index].completed = !tasks[index].completed;
   saveToDoItem();
   displayAllTodos();
-}
+};
 
 const todoList = document.getElementById('todo-list');
 const button = document.getElementById('clearBtn');
 
-button.addEventListener('click', () => { 
+button.addEventListener('click', () => {
   const completedTodos = todoList.querySelectorAll('input:checked');
-    completedTodos.forEach((todo) => {
-      todo.parentNode.remove();
-      saveToDoItem();
-    })
+  completedTodos.forEach((todo) => {
+    todo.parentNode.remove();
+    saveToDoItem();
+  });
 
-    const todosInLocalStorage = JSON.parse(localStorage.getItem('tasks'));
-    const uncheckedToDos = todosInLocalStorage.filter((todo) => {
-      return !todo.completed;
-    });
-    localStorage.setItem('tasks', JSON.stringify(uncheckedToDos));
+  const todosInLocalStorage = JSON.parse(localStorage.getItem('tasks'));
+  const uncheckedToDos = todosInLocalStorage.filter((todo) => !todo.completed);
+  localStorage.setItem('tasks', JSON.stringify(uncheckedToDos));
 });
 
 export { addToDoItem, displayAllTodos, saveToDoItem };
