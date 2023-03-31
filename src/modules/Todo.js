@@ -1,68 +1,106 @@
-const descriptionInput = document.getElementById('description-input');
-let allToDos = [];
-const todosList = document.getElementById('todos');
+const taskInput = document.getElementById('task');
+const addButton = document.getElementById('add-task');
+const taskList = document.getElementById('todo-list');
 
-const deleteToDoItem = (index) => {
-  allToDos.splice(index, 1);
-  todosList.innerHTML = '';
-  localStorage.setItem('alltasks', JSON.stringify(allToDos));
+let tasks = [];
+const storedTasks = JSON.parse(localStorage.getItem('tasks'));
+  if (storedTasks) {
+    tasks = storedTasks;
+  }
+
+// Save tasks to local storage
+function saveToDoItem() {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+// Add a new task
+const addToDoItem = () => {
+  const taskDescription = taskInput.value;
+  if (taskDescription.trim()) {
+    const newTask = {
+      description: taskDescription,
+      completed: false,
+      index: tasks.length,
+    };
+    tasks.push(newTask);
+    saveToDoItem();
+    displayAllTodos();
+    taskInput.value = '';
+  }
 };
 
-const editToDoList = (index, newValue) => {
-  allToDos[index].description = newValue;
+// Delete a task
+const deleteTask = (index) => {
+  // Remove the task from the array
+  
+  tasks.splice(index, 1);
+
+  // Update the index of the remaining tasks
+  for (let i = index; i < tasks.length; i++) {
+    tasks[i].index = i + 1;
+  }
+
+  // Update the todo list in local storage
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+
+  // Redraw the todo list
+  displayAllTodos();
 };
 
-const toggleCompletedTask = (index) => {
-  allToDos[index].completed = !allToDos[index].completed;
+
+// Edit a task description
+const editToDoItem = (index, newDescription) => {
+  tasks[index].description = newDescription;
+  saveToDoItem();
+  displayAllTodos();
 };
 
-const displayToDos = () => {
-  allToDos.forEach((todo, index) => {
-    const div = document.createElement('div');
-    div.className = 'todo';
 
-    const pTag = document.createElement('p');
-    pTag.className = 'todo-description';
-    pTag.innerHTML = todo.description;
-    pTag.addEventListener('click', () => editToDoList(index, todo.description));
 
-    const completedBtn = document.createElement('input');
-    completedBtn.type = 'checkbox';
-    completedBtn.value = todo.completed;
-    completedBtn.addEventListener('click', toggleCompletedTask(index));
+// Render the task list
+const displayAllTodos = () => {
+  taskList.innerHTML = '';
+  tasks.forEach((task, index) => {
+    const listItem = document.createElement('li');
+    listItem.id = `task-${index}`;
 
-    const deleteBtn = document.createElement('span');
-    deleteBtn.textContent = 'more_vert';
-    deleteBtn.className = 'material-symbols-outlined';
-    deleteBtn.classList.add('delete-btn');
-    deleteBtn.addEventListener('click', () => deleteToDoItem(index));
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = task.completed;
 
-    div.appendChild(completedBtn);
-    div.appendChild(pTag);
-    div.appendChild(deleteBtn);
-    todosList.append(div);
+    const taskDescription = document.createElement('input');
+    taskDescription.type = 'text';
+    taskDescription.className = 'task-description';
+    taskDescription.value = task.description;
+    taskDescription.addEventListener('blur', () => {
+      editToDoItem(index, taskDescription.value);
+    });
+    listItem.addEventListener('mouseover', () => {
+      deleteButton.textContent = 'delete';
+    });
+
+    listItem.addEventListener('mouseout', () => {
+      deleteButton.textContent = 'more_vert';
+    });
+
+    const deleteButton = document.createElement('span');
+    deleteButton.className = 'material-symbols-outlined';
+    deleteButton.classList.add('delete-btn');
+    deleteButton.textContent = 'more_vert';
+    deleteButton.addEventListener('click', () => {
+      deleteTask(index);
+    });
+
+    listItem.appendChild(checkbox);
+    listItem.appendChild(taskDescription);
+    listItem.appendChild(deleteButton);
+    taskList.appendChild(listItem);
+
+    if (task.completed) {
+      taskDescription.style.textDecoration = 'line-through';
+    }
   });
 };
 
-if (localStorage.getItem('alltasks')) {
-  allToDos = JSON.parse(localStorage.getItem('alltasks'));
-  displayToDos();
-} else {
-  todosList.innerHTML = 'Currenty you have no todos';
-}
 
-const addToDo = () => {
-  todosList.innerHTML = '';
-  const newTodo = {
-    id: allToDos.length,
-    description: descriptionInput.value,
-    completed: false,
-  };
-
-  allToDos.push(newTodo);
-  localStorage.setItem('alltasks', JSON.stringify(allToDos));
-  descriptionInput.value = '';
-  displayToDos();
-};
-
-export { addToDo, displayToDos, deleteToDoItem };
+export { addToDoItem, displayAllTodos }
