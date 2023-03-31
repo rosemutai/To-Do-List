@@ -12,43 +12,20 @@ function saveToDoItem() {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-// Add a new task
-const addToDoItem = () => {
-  const taskDescription = taskInput.value;
-  if (taskDescription.trim()) {
-    const newTask = {
-      description: taskDescription,
-      completed: false,
-      index: tasks.length,
-    };
-    tasks.push(newTask);
-    saveToDoItem();
-    displayAllTodos();
-    taskInput.value = '';
-  }
-};
-
 // Delete a task
 const deleteTask = (index) => {
   // Remove the task from the array
   tasks.splice(index, 1);
 
   // Update the index of the remaining tasks
-  for (let i = index; i < tasks.length; i+=) {
+  for (let i = index; i < tasks.length; i += 1) {
     tasks[i].index = i + 1;
   }
 
   // Update the todo list in local storage
   localStorage.setItem('tasks', JSON.stringify(tasks));
 
-  displayAllTodos();
-};
-
-// Edit a task description
-const editToDoItem = (index, newDescription) => {
-  tasks[index].description = newDescription;
-  saveToDoItem();
-  displayAllTodos();
+  displayAllTodos(); /* eslint-disable-line */ 
 };
 
 // Render the task list
@@ -67,7 +44,7 @@ const displayAllTodos = () => {
     taskDescription.className = 'task-description';
     taskDescription.value = task.description;
     taskDescription.addEventListener('blur', () => {
-      editToDoItem(index, taskDescription.value);
+      editToDoItem(index, taskDescription.value);/* eslint-disable-line */ 
     });
 
     const deleteButton = document.createElement('span');
@@ -95,6 +72,29 @@ const displayAllTodos = () => {
       taskDescription.style.textDecoration = 'line-through';
     }
   });
+};
+
+// Add a new task
+const addToDoItem = () => {
+  const taskDescription = taskInput.value;
+  if (taskDescription.trim()) {
+    const newTask = {
+      description: taskDescription,
+      completed: false,
+      index: tasks.length,
+    };
+    tasks.push(newTask);
+    saveToDoItem();
+    displayAllTodos();
+    taskInput.value = '';
+  }
+};
+
+// Edit a task description
+const editToDoItem = (index, newDescription) => {
+  tasks[index].description = newDescription;
+  saveToDoItem();
+  displayAllTodos();
 };
 
 export { addToDoItem, displayAllTodos };
