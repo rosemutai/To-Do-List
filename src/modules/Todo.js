@@ -1,14 +1,13 @@
 const taskInput = document.getElementById('task');
-const addButton = document.getElementById('add-task');
 const taskList = document.getElementById('todo-list');
 
 let tasks = [];
 const storedTasks = JSON.parse(localStorage.getItem('tasks'));
-  if (storedTasks) {
-    tasks = storedTasks;
-  }
+if (storedTasks) {
+  tasks = storedTasks;
+}
 
-// Save tasks to local storage
+// Add to local storage
 function saveToDoItem() {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
@@ -32,21 +31,18 @@ const addToDoItem = () => {
 // Delete a task
 const deleteTask = (index) => {
   // Remove the task from the array
-  
   tasks.splice(index, 1);
 
   // Update the index of the remaining tasks
-  for (let i = index; i < tasks.length; i++) {
+  for (let i = index; i < tasks.length; i+=) {
     tasks[i].index = i + 1;
   }
 
   // Update the todo list in local storage
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 
-  // Redraw the todo list
   displayAllTodos();
 };
-
 
 // Edit a task description
 const editToDoItem = (index, newDescription) => {
@@ -54,8 +50,6 @@ const editToDoItem = (index, newDescription) => {
   saveToDoItem();
   displayAllTodos();
 };
-
-
 
 // Render the task list
 const displayAllTodos = () => {
@@ -75,13 +69,6 @@ const displayAllTodos = () => {
     taskDescription.addEventListener('blur', () => {
       editToDoItem(index, taskDescription.value);
     });
-    listItem.addEventListener('mouseover', () => {
-      deleteButton.textContent = 'delete';
-    });
-
-    listItem.addEventListener('mouseout', () => {
-      deleteButton.textContent = 'more_vert';
-    });
 
     const deleteButton = document.createElement('span');
     deleteButton.className = 'material-symbols-outlined';
@@ -89,6 +76,14 @@ const displayAllTodos = () => {
     deleteButton.textContent = 'more_vert';
     deleteButton.addEventListener('click', () => {
       deleteTask(index);
+    });
+
+    listItem.addEventListener('mouseover', () => {
+      deleteButton.textContent = 'delete';
+    });
+
+    listItem.addEventListener('mouseout', () => {
+      deleteButton.textContent = 'more_vert';
     });
 
     listItem.appendChild(checkbox);
@@ -102,5 +97,4 @@ const displayAllTodos = () => {
   });
 };
 
-
-export { addToDoItem, displayAllTodos }
+export { addToDoItem, displayAllTodos };
