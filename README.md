@@ -15,6 +15,7 @@
   - [:hammer\_and\_wrench: Built With ](#hammer_and_wrench-built-with-)
     - [Tech Stack ](#tech-stack-)
   - [Key Features ](#key-features-)
+  - [🚀 Live Demo ](#-live-demo-)
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
@@ -73,6 +74,14 @@ This project is built with HTML, CSS & JavaScript
 - **Remove a task from the list**
 - **Mark a selected task as complete**
 - **Remove all items marked as complete at once**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LIVE DEMO -->
+
+## 🚀 Live Demo <a name="live-demo"></a>
+
+- [Live Demo Link](https://rosemutai.github.io/To-Do-List/dist/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
