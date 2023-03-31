@@ -1,6 +1,5 @@
 const taskInput = document.getElementById('task');
 const taskList = document.getElementById('todo-list');
-
 let tasks = [];
 const storedTasks = JSON.parse(localStorage.getItem('tasks'));
 if (storedTasks) {
@@ -38,6 +37,7 @@ const displayAllTodos = () => {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = task.completed;
+    checkbox.addEventListener('click', () => toggleCompletedToDo(index));
 
     const taskDescription = document.createElement('input');
     taskDescription.type = 'text';
@@ -97,4 +97,27 @@ const editToDoItem = (index, newDescription) => {
   displayAllTodos();
 };
 
-export { addToDoItem, displayAllTodos };
+const toggleCompletedToDo = (index) => {
+  tasks[index].completed = !tasks[index].completed;
+  saveToDoItem();
+  displayAllTodos();
+}
+
+const todoList = document.getElementById('todo-list');
+const button = document.getElementById('clearBtn');
+
+button.addEventListener('click', () => { 
+  const completedTodos = todoList.querySelectorAll('input:checked');
+    completedTodos.forEach((todo) => {
+      todo.parentNode.remove();
+      saveToDoItem();
+    })
+
+    const todosInLocalStorage = JSON.parse(localStorage.getItem('tasks'));
+    const uncheckedToDos = todosInLocalStorage.filter((todo) => {
+      return !todo.completed;
+    });
+    localStorage.setItem('tasks', JSON.stringify(uncheckedToDos));
+});
+
+export { addToDoItem, displayAllTodos, saveToDoItem };
